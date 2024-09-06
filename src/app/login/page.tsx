@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function LoginPage() {
   return (
-    <div className="h-[calc(100vh-64px)] flex justify-center items-center p-6 sm:p-8">
+    <div className="sm:h-[calc(100vh-64px)] flex justify-center items-center p-6 sm:p-8">
       <div className="shadow-2xl bg-white w-full sm:h-[80vh] sm:w-[80vw] grid grid-cols-1 md:grid-cols-2 overflow-hidden rounded-lg">
         <div className="p-8 flex justify-center items-center">
           <div className="w-full">

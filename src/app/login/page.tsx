@@ -8,6 +8,7 @@ import AppInput from '@/components/form/AppInput';
 import AppSubmit from '@/components/form/AppSubmit';
 import { Button } from '@/components/ui/button';
 import Divider from '@/components/ui/divider';
+import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FieldValues } from 'react-hook-form';
@@ -68,7 +69,15 @@ export default function LoginPage() {
             <Divider>Or Login with</Divider>
 
             <div className="grid grid-cols-3 gap-2">
-              <Button variant="outline" size="lg">
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() =>
+                  signIn('google', {
+                    callbackUrl: `${origin}/transactions`,
+                  })
+                }
+              >
                 <Image
                   src={googleLogo}
                   alt="google logo"
@@ -76,7 +85,15 @@ export default function LoginPage() {
                   width={24}
                 />
               </Button>
-              <Button variant="outline" size="lg">
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() =>
+                  signIn('github', {
+                    callbackUrl: `${origin}/transactions`,
+                  })
+                }
+              >
                 <Image
                   src={githubLogo}
                   alt="github logo"
@@ -84,7 +101,15 @@ export default function LoginPage() {
                   width={24}
                 />
               </Button>
-              <Button variant="outline" size="lg">
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() =>
+                  signIn('twitter', {
+                    callbackUrl: `${origin}/transactions`,
+                  })
+                }
+              >
                 <Image src={xLogo} alt="x logo" height={24} width={24} />
               </Button>
             </div>

@@ -1,5 +1,5 @@
 import AuthIllustration from '@/components/Auth/AuthIllustration';
-import LoginForm from '@/components/Auth/LoginForm';
+import SignupForm from '@/components/Auth/SignupForm';
 import SocialLogin from '@/components/Auth/SocialLogin';
 import Divider from '@/components/ui/divider';
 import Link from 'next/link';
@@ -7,7 +7,7 @@ import Link from 'next/link';
 export default function SignupPage() {
   return (
     <div className="sm:h-[calc(100vh-64px)] flex justify-center items-center p-6 sm:p-8">
-      <div className="shadow-2xl bg-white w-full sm:h-[80vh] sm:w-[80vw] grid grid-cols-1 md:grid-cols-2 overflow-hidden rounded-lg">
+      <div className="shadow-2xl bg-white w-full sm:h-[85vh] sm:w-[80vw] grid grid-cols-1 md:grid-cols-2 overflow-hidden rounded-lg">
         <AuthIllustration />
         <div className="p-8 flex justify-center items-center">
           <div className="w-full">
@@ -16,7 +16,7 @@ export default function SignupPage() {
               Create an account to start finance tracking
             </p>
 
-            <LoginForm />
+            <SignupForm />
 
             <Divider>
               <>

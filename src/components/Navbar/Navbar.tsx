@@ -1,27 +1,27 @@
-'use client';
-
-import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
+import { IPath } from '@/types';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { NavLink } from '../ui/nav-link';
+import LinkDropdown from './LinkDropdown';
 
-const items = [
+const items: IPath[] = [
   {
-    path: '/transactions',
+    pathname: '/transactions',
     text: 'Transactions',
   },
   {
     text: 'Accounts',
     children: [
       {
-        path: '/create-account',
+        pathname: '/create-account',
         text: 'Add An Account',
       },
       {
-        path: '/groups',
+        pathname: '/groups',
         text: 'Groups',
       },
       {
-        path: '/accounts',
+        pathname: '/accounts',
         text: 'Accounts',
       },
     ],
@@ -29,59 +29,31 @@ const items = [
 ];
 
 export function Navbar() {
-  const activePath = usePathname();
-
   return (
-    <div className="bg-slate-700 text-slate-200 h-12 px-8 flex items-center">
+    <div className="bg-slate-700 text-slate-200 h-12 px-8 flex justify-between items-center">
       <div className="flex">
         {items.map((item) => {
           if (!item.children) {
             return (
-              <Link
+              <NavLink
                 key={item.text}
-                href={item.path}
-                className={cn(
-                  'h-12 flex items-center justify-center hover:bg-slate-900 px-6',
-                  {
-                    'bg-slate-800': item.path === activePath,
-                  }
-                )}
+                href={item.pathname}
+                className="h-12 flex items-center justify-center hover:bg-slate-900 px-6"
+                activeClassName="bg-slate-800"
               >
                 {item.text}
-              </Link>
+              </NavLink>
             );
           }
 
-          return (
-            <div
-              key={item.text}
-              className={cn(
-                'group relative h-12 flex items-center justify-center hover:bg-slate-900 px-6',
-                {
-                  'bg-slate-800': item.children.some(
-                    (child) => child.path === activePath
-                  ),
-                }
-              )}
-            >
-              <span>{item.text}</span>
-              <div className="hidden group-hover:flex flex-col bg-slate-950 absolute top-full left-0 p-2 w-max">
-                {item.children.map((child) => (
-                  <Link
-                    key={child.text}
-                    href={child.path}
-                    className={cn('hover:bg-slate-900 px-4 py-2 rounded', {
-                      'bg-slate-800': child.path === activePath,
-                    })}
-                  >
-                    {child.text}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          );
+          return <LinkDropdown key={item.text} item={item} />;
         })}
       </div>
+      <Link href="/login">
+        <Button variant="outline" className="text-gray-600">
+          Login
+        </Button>
+      </Link>
     </div>
   );
 }
